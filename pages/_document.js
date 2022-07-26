@@ -1,12 +1,17 @@
-import Document, { Html, Main, NextScript } from "next/document";
-import Head from "next/head";
 import { ServerStyleSheets } from "@material-ui/core/styles";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import React from "react";
+
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head></Head>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
@@ -21,7 +26,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
   ctx.renderPage = () => {
     return originalRenderPage({
-      enhaceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
     });
   };
   const initialProps = await Document.getInitialProps(ctx);
